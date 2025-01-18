@@ -53,10 +53,19 @@
   ansible.builtin.set_fact:
     dev_secret_key: "{{ lookup('password', '/tmp/secret_key length=32 chars=ascii_letters,digits,special') }}"  
 
+- name: Generate Random Secret Key
+  ansible.builtin.set_fact:
+    pro_secret_key: "{{ lookup('password', '/tmp/secret_key length=32 chars=ascii_letters,digits,special') }}"  
+
 - name: Generate Dev config using Jinja2 template
   template:
     src: dev.ini.j2
     dest: "{{ base_path }}/config/dev.ini" 
+
+- name: Generate Prod config using Jinja2 template
+  template:
+    src: pro.ini.j2
+    dest: "{{ base_path }}/config/pro.ini" 
 
 - name: Generate uWSGI ini using Jinja2 template
   template:

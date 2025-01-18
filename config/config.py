@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/4/18 4:02 PM
-# @Author  : ShaHeTop-Almighty-ares
-# @Email   : yang6333yyx@126.com
+# @Time    : 2024/01/18 4:02 PM
+# @Author  : Pedro Anisio Silva
+# @Email   : pedroanisio@arc4d3.com
 # @File    : config.py
-# @Software: PyCharm
 
 import os
 import configparser
@@ -13,21 +12,21 @@ import redis
 
 
 def get_config():
-    """获取配置文件"""
+    """Retrieve configuration file"""
     conf = configparser.ConfigParser()
     flask_env = os.environ.get('FLASK_ENV')
     base_path = os.path.dirname(os.path.abspath(__file__)) + '/'
 
     default_env = {
         'config_path': base_path + 'dev.ini',
-        'msg': '本地配置文件:{}'.format(base_path + 'dev.ini'),
+        'msg': 'Local configuration file: {}'.format(base_path + 'dev.ini'),
     }
 
     env_path_dict = {
         'default': default_env,
         'production': {
             'config_path': base_path + 'pro.ini',
-            'msg': 'prod配置文件:{}'.format(base_path + 'pro.ini')
+            'msg': 'Production configuration file: {}'.format(base_path + 'pro.ini')
         },
     }
     env_obj = env_path_dict.get(flask_env, default_env)
@@ -39,12 +38,10 @@ def get_config():
 
 
 class BaseConfig:
-    # translate to English
     """Base configuration"""
     
-    # SECRET_KEY = os.urandom(24)
-    SECRET_KEY = 'ShaHeTop-Almighty-ares'  # session加密
-    PERMANENT_SESSION_LIFETIME = timedelta(days=30)  # 设置session过期时间
+    SECRET_KEY = 'change-me'  # Session encryption
+    PERMANENT_SESSION_LIFETIME = timedelta(days=30)  # Set session expiration time
     DEBUG = True
     # SERVER_NAME = 'example.com'
     RUN_HOST = '0.0.0.0'
@@ -56,18 +53,18 @@ class BaseConfig:
 
 
 class NewConfig(BaseConfig):
-    """区分配置文件"""
+    """Configuration differentiation"""
 
-    conf = get_config()  # 根据环境变量获取对应的配置文件
+    conf = get_config()  # Get the corresponding configuration file based on environment variables
 
-    # base
-    SECRET_KEY = conf.get('base', 'SECRET_KEY')  # session加密
-    PERMANENT_SESSION_LIFETIME = timedelta(days=30)  # 设置session过期时间
+    # Base
+    SECRET_KEY = conf.get('base', 'SECRET_KEY')  # Session encryption
+    PERMANENT_SESSION_LIFETIME = timedelta(days=30)  # Set session expiration time
     DEBUG = conf.getboolean('base', 'DEBUG')
     RUN_HOST = conf.get('base', 'RUN_HOST')
     RUN_PORT = conf.getint('base', 'RUN_PORT')
 
-    # mysql
+    # MySQL
     MYSQL_USERNAME = conf.get('mysql', 'USERNAME')
     MYSQL_PASSWORD = conf.get('mysql', 'PASSWORD')
     MYSQL_HOSTNAME = conf.get('mysql', 'HOSTNAME')
@@ -83,7 +80,7 @@ class NewConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = DB_URI
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-    # redis
+    # Redis
     redis_obj = {
         'host': conf.get('redis', 'REDIS_HOST'),
         'port': conf.get('redis', 'REDIS_PORT'),
@@ -104,7 +101,6 @@ config_obj = {
 
 if __name__ == '__main__':
     print(config_obj['default'].DB_URI)
-
     print(config_obj['default'].DB_URI)
     print(config_obj['new'].DB_URI)
     print(config_obj['default'].R)
