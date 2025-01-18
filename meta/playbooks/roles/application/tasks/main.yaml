@@ -1,5 +1,15 @@
 # meta/playbooks/roles/application/tasks/main.yaml
 ---
+- name: Include all .yaml files except bastion.yaml (2.3)
+  ansible.builtin.include_vars:
+    dir: vars
+    extensions:
+      - 'yaml'
+
+- name: Generate Project Codename (only once per execution)
+  ansible.builtin.set_fact:
+    project_codename: "{{ colors | random }}-{{ animals | random }}"
+
 - name: Ensure required packages are installed
   apt:
     name:
@@ -22,4 +32,33 @@
 - name: Generate Pipefile using Jinja2 template
   template:
     src: Pipfile.j2
-    dest: "{{ base_path }}/Pipfile"  
+    dest: "{{ base_path }}/Pipfile"
+
+- name: Generate server_start.sh using Jinja2 template
+  template:
+    src: server_start.j2
+    dest: "{{ base_path }}/server_start.sh" 
+
+# make server_start.sh executable
+- name: Make server_start.sh executable
+  file:
+    path: "{{ base_path }}/server_start.sh"
+    mode: '0755'
+
+- name: Print Generated Codename
+  ansible.builtin.debug:
+    msg: "Project Codename: {{ project_codename }}"
+
+- name: Generate Random Secret Key
+  ansible.builtin.set_fact:
+    dev_secret_key: "{{ lookup('password', '/tmp/secret_key length=32 chars=ascii_letters,digits,special') }}"  
+
+- name: Generate Dev config using Jinja2 template
+  template:
+    src: dev.ini.j2
+    dest: "{{ base_path }}/config/dev.ini" 
+
+- name: Generate uWSGI ini using Jinja2 template
+  template:
+    src: uwsgi_for_docker.ini.j2
+    dest: "{{ base_path }}/uwsgi_for_docker.ini"     

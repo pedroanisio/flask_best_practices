@@ -39,7 +39,9 @@ def get_config():
 
 
 class BaseConfig:
-    """配置基类"""
+    # translate to English
+    """Base configuration"""
+    
     # SECRET_KEY = os.urandom(24)
     SECRET_KEY = 'ShaHeTop-Almighty-ares'  # session加密
     PERMANENT_SESSION_LIFETIME = timedelta(days=30)  # 设置session过期时间

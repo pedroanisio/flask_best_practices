@@ -1,7 +1,10 @@
----
-# Variables for Ansible playbook
+# vars.yml
 project_name: "flask_best_practices"
 project_dir: "flask_best_practices"
 python_version: "3.12"
 timezone: "America/Sao_Paulo"
 base_path: "/home/pals/code/_temp/flask_best_practices"
+
+# Database Config
+db_name: "app-{{project_codename}}-db"
+db_user: "app-{{project_codename}}-user"

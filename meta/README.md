@@ -47,3 +47,5 @@ Modify these values in the Ansible playbook (`generate_dockerfile.yml`) under th
 ## Support
 For any issues, feel free to raise an issue in the project repository.
 
+Install 
+ansible-galaxy collection install community.crypto

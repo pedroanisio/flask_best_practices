@@ -1,11 +1,11 @@
 #!/bin/bash
 
-cd /srv/{{project_dir}}
+cd {{base_path}};
 
-{{project_name}}_UUID=`docker ps | grep {{project_name}} | awk '{print $1}'`;
+app_UUID=`docker ps | grep {{project_name}} | awk '{print $1}'`;
 
-if [ ${{project_name}}_UUID]; then
-  docker stop ${{project_name}}_UUID;
+if [ $app_UUID ]; then
+  docker stop $app_UUID ;
   echo "stop success";
 fi
 
