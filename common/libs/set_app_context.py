@@ -14,7 +14,7 @@ def set_app_context(func):
         try:
             return func(*args, **kwargs)
         except BaseException as e:
-            print('=== 测试:{} ==='.format(func.__name__))
+            print('=== Test: {} ==='.format(func.__name__))
             from ApplicationExample import create_app
             app = create_app()
             with app.app_context():

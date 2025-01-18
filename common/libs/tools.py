@@ -12,7 +12,7 @@ from loguru import logger
 
 
 def print_logs():
-    """logs"""
+    """Logs"""
     host = request.host
     ip_address = request.headers.get('X-Forwarded-For')
     method = request.method
@@ -46,7 +46,7 @@ def check_keys(dic, *keys):
 
 
 def json_format(d):
-    """json格式打印"""
+    """Print JSON formatted data"""
     try:
         print(json.dumps(d, sort_keys=True, indent=4, separators=(', ', ': '), ensure_ascii=False))
     except BaseException as e:
