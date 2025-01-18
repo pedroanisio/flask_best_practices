@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2022/7/19 10:51
+# @Time    : 2022/7/19 10:51 PM
 # @Author  : ShaHeTop-Almighty-ares
 # @Email   : yang6333yyx@126.com
 # @File    : celeryconfig.py
@@ -9,10 +9,10 @@ broker_url = 'redis://:123456@127.0.0.1:6379/2'
 
 result_backend = 'redis://:123456@127.0.0.1:6379/3'
 
-# 时区
+# Time zone
 timezone = 'Asia/Shanghai'
 
-# 是否使用UTC
+# Whether to use UTC
 enable_utc = False
 
 # include_list = [
