@@ -5,12 +5,10 @@
 # @File    : db_register.py
 # @Software: PyCharm
 
-
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 def register_db(app):
-    """db注册"""
+    """Database registration"""
     db.init_app(app)

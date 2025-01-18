@@ -9,7 +9,7 @@ from config.config import config_obj
 
 
 def register_config(app):
-    """配置文件"""
+    """Configuration File"""
 
-    app.config.from_object(config_obj['new'])  # 环境配置
+    app.config.from_object(config_obj['new'])  # Environment Configuration
     config_obj['new'].init_app(app)
