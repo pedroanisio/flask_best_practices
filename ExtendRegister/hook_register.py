@@ -3,8 +3,6 @@
 # @Author  : ShaHeTop-Almighty-ares
 # @Email   : yang6333yyx@126.com
 # @File    : hook_register.py
-# @Software: PyCharm
-
 
 from app.api import restful_api, method_view_api
 from common.interceptors.ApiHook import api_before_request, api_after_request
@@ -13,7 +11,7 @@ from common.interceptors.AppHook import app_before_request, app_after_request
 
 
 def register_hook(app):
-    """拦截器(钩子函数)注册"""
+    """Interceptor (Hook Function) Registration"""
 
     restful_api.before_request(api_before_request)
     restful_api.after_request(api_after_request)
