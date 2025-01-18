@@ -20,8 +20,8 @@ from common.libs.tools import print_logs
 
 @restful_api.app_errorhandler(Exception)
 def errors(e):
-    logger.error('异常:{}'.format(e))
-    logger.error('异常类型:{}'.format(type(e)))
+    logger.error('Exception: {}'.format(e))
+    logger.error('Exception Type: {}'.format(type(e)))
 
     data = request.method + ' ' + request.path
 
