@@ -12,52 +12,56 @@ from all_reference import *
 
 class MethodViewParams(MethodView):
     """
-    method view 获取get请求传参
+    MethodView - Retrieve GET request parameters
     """
 
     def get(self):
-        """获取get请求传参"""
+        """Retrieve GET request parameters"""
 
-        # 方法一:每个获取
+        # Method 1: Retrieve individually
         a = request.args.get('a')
         b = request.args.get('b')
         print(a, b)
 
-        # 方法二:一次性或者再取值
+        # Method 2: Retrieve all at once
         data = request.args.to_dict()
         print(data)
-        return api_result(code=200, message='MethodView获取get请求传参', data=data)
+        return api_result(code=200, 
+                          message='MethodView - Retrieved GET parameters', 
+                          data=data)
 
 
 class MethodViewFormData(MethodView):
     """
-    method view 获取form-data传参
+    MethodView - Retrieve form-data parameters
     """
 
     def post(self):
-        """获取form-data传参"""
+        """Retrieve form-data parameters"""
 
-        # 方法一:每个获取
+        # Method 1: Retrieve individually
         a = request.form.get('a')
         b = request.form.get('b')
         print(a, b)
 
-        # 方法二:一次性或者再取值
+        # Method 2: Retrieve all at once
         data = request.form.to_dict()
         print(data)
         a = data.get('a')
         b = data.get('b')
         print(a, b)
-        return api_result(code=200, message='MethodView获取form-data传参', data=data)
+        return api_result(code=200, 
+                          message='MethodView - Retrieved form-data parameters', 
+                          data=data)
 
 
 class MethodViewJson(MethodView):
     """
-    method view 获取JSON传参
+    MethodView - Retrieve JSON parameters
     """
 
     def post(self):
-        """获取JSON传参"""
+        """Retrieve JSON parameters"""
 
         data = request.get_json()
         d1 = data.get('d1')
@@ -66,18 +70,22 @@ class MethodViewJson(MethodView):
         print(d1)
         print(d2)
         print(d3)
-        return api_result(code=200, message='MethodView获取JSON传参', data=data)
+        return api_result(code=200, 
+                          message='MethodView - Retrieved JSON parameters', 
+                          data=data)
 
 
 class MethodViewBytesData(MethodView):
     """
-    method view 获取二进制data传参
+    MethodView - Retrieve binary data parameters
     """
 
     def post(self):
-        """获取二进制data传参"""
+        """Retrieve binary data parameters"""
 
         data = request.get_data()
         print(data)
         print(type(data))
-        return api_result(code=200, message='MethodView获取二进制data传参', data=f"data is  {type(data)}")
+        return api_result(code=200, 
+                          message='MethodView - Retrieved binary data parameters', 
+                          data=f"Data is {type(data)}")

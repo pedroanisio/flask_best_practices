@@ -12,7 +12,7 @@ route_module_01 = Blueprint('cms_module_01', __name__)
 
 @route_module_01.route('/', methods=["GET", "POST"])
 def module_01():
-    return '其他业务模块001'
+    return 'Other business module 001'
 
 
 @route_module_01.route('/index', methods=["GET", "POST"])

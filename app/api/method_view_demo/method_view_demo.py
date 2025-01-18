@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2021/4/21 下午5:37
+# @Time    : 2021/4/21 5:37 PM
 # @Author  : ShaHeTop-Almighty-ares
 # @Email   : yang6333yyx@126.com
 # @File    : method_view_demo.py
@@ -10,17 +10,17 @@ from all_reference import *
 
 class MethodViewDemo(MethodView):
     """
-    method view demo
+    Method View Demo
     """
 
     def get(self, page=1, size=10):
-        return api_result(code=200, message=f'MethodView get. 参数{page},{size}')
+        return api_result(code=200, message=f'MethodView GET. Params: {page},{size}')
 
     def post(self):
-        return api_result(code=200, message='MethodView post')
+        return api_result(code=200, message='MethodView POST')
 
     def put(self):
-        return api_result(code=200, message='MethodView put')
+        return api_result(code=200, message='MethodView PUT')
 
     def delete(self):
-        return api_result(code=200, message='MethodView delete')
+        return api_result(code=200, message='MethodView DELETE')
