@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019-05-15 15:52
-# @Author  : ShaHeTop-Almighty-ares
-# @Email   : yang6333yyx@126.com
+# @Time    : 2024/01/18 4:02 PM
+# @Author  : Pedro Anisio Silva
+# @Email   : pedroanisio@arc4d3.com
 # @File    : run.py
-# @Software: PyCharm
 
 import os
 import platform
@@ -25,7 +24,6 @@ def show():
     print('Parent Process ID: {}'.format(os.getppid()))
     print('Child Process ID: {}'.format(os.getpid()))
     print('Thread ID: {}'.format(threading.get_ident()))
-    # print(app.url_map)
     print('<', '-' * 66, '>')
 
 
@@ -40,7 +38,6 @@ def main():
     if platform.system() == 'Linux':
         app.run(host=host, port=port)
     else:
-        # app.run(debug=True, host='0.0.0.0', port=9999)
         os.environ['is_debug'] = "is_debug"
         app.run(debug=debug, host=host, port=port)
 
@@ -49,8 +46,8 @@ if __name__ == '__main__':
     """
     # Set environment variables
     export FLASK_ENV='development'
-    export FLASK_ENV='production'
-    export FLASK_ENV='docker_production'
+    # export FLASK_ENV='production'
+    # export FLASK_ENV='docker_production'
     """
 
     show()
