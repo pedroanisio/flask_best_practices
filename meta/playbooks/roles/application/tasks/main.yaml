@@ -1,0 +1,25 @@
+# meta/playbooks/roles/application/tasks/main.yaml
+---
+- name: Ensure required packages are installed
+  apt:
+    name:
+      - python3
+      - python3-pip
+      - pipenv
+    state: present
+  become: yes
+
+- name: Generate Dockerfile using Jinja2 template
+  template:
+    src: Dockerfile.j2
+    dest: "{{ base_path }}/Dockerfile"
+
+- name: Generate README using Jinja2 template
+  template:
+    src: README.j2
+    dest: "{{ base_path }}/README.md"
+
+- name: Generate Pipefile using Jinja2 template
+  template:
+    src: Pipfile.j2
+    dest: "{{ base_path }}/Pipfile"  

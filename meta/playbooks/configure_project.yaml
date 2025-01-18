@@ -1,0 +1,6 @@
+---
+- name: Configure Project
+  hosts: localhost
+  gather_facts: no
+  roles:
+    - application

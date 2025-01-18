@@ -1,0 +1,7 @@
+---
+# Variables for Ansible playbook
+project_name: "flask_best_practices"
+project_dir: "flask_best_practices"
+python_version: "3.12"
+timezone: "America/Sao_Paulo"
+base_path: "/home/pals/code/_temp/flask_best_practices"
