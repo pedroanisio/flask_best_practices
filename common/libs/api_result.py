@@ -1,16 +1,24 @@
 # -*- coding: utf-8 -*-
-# @Time    : 2019/4/19 12:00 PM
-# @Author  : ShaHeTop-Almighty-ares
-# @Email   : yang6333yyx@126.com
+# @Time    : 2024/01/18 4:02 PM
+# @Author  : Pedro Anisio Silva
+# @Email   : pedroanisio@arc4d3.com
 # @File    : api_result.py
-# @Software: PyCharm
-
-
 from flask import jsonify
 
 
-# 返回格式
+# Response format
+
 def api_result(code=None, message=None, data=None, details=None, status=None):
+    """
+    Generate a standardized API response.
+
+    :param code: Response status code
+    :param message: Response message
+    :param data: Response data payload
+    :param details: Additional details (not currently used)
+    :param status: HTTP status (not currently used)
+    :return: JSON response
+    """
     result = {
         "code": code,
         "message": message,
@@ -19,7 +27,5 @@ def api_result(code=None, message=None, data=None, details=None, status=None):
 
     if not result['data']:
         result.pop('data')
-        return jsonify(result)
+    
     return jsonify(result)
-
-

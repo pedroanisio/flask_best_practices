@@ -5,20 +5,18 @@
 # @File    : customException.py
 # @Software: PyCharm
 
-
 from werkzeug.exceptions import HTTPException
-
 from flask import jsonify, abort, request
 import flask_restful
 
 custom_resp_dict = {
-    333: '测试自定义异常',
-    400: '参数类型错误',
-    401: '未登录_认证信息失败_令牌过期',
-    403: '无权限',
-    500: '服务器异常',
+    333: 'Test custom exception',
+    400: 'Parameter type error',
+    401: 'Unauthorized - Token expired',
+    403: 'No permission',
+    500: 'Server error',
     666: 'Token?',
-    996: '没救了'
+    996: 'No hope left'
 }
 
 
@@ -29,23 +27,20 @@ class CustomException(HTTPException):
     def __init__(self, code=None, msg=None):
         if code:
             self.code = code
-
         if msg:
             self.msg = msg
         super(CustomException, self).__init__(self.code, self.msg)
 
 
 def method_view_ab_code(code):
-    """MethodView 自定义异常"""
+    """MethodView custom exception"""
     msg = custom_resp_dict.get(code, 'ERROR')
     raise CustomException(code=code, msg=msg)
 
 
 def flask_restful_ab_code(code):
-    """Flask Restful 自定义异常"""
-
+    """Flask Restful custom exception"""
     message = custom_resp_dict.get(code)
-
     if message:
         req = request.method + ' ' + request.path
         result = {
@@ -54,10 +49,8 @@ def flask_restful_ab_code(code):
             "request": req
         }
         result = jsonify(result)
-
     else:
         result = code
-
-    # 修改、简化 flask_restful.abort
+    # Modify and simplify flask_restful.abort
     flask_restful.abort = abort(result)
     flask_restful.abort(code)
