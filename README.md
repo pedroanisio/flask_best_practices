@@ -63,11 +63,13 @@ flask_best_practices
 
 ## 1. Installation
 
-- Python 3.9+
+- Python 3.12+
 - pip3
 - pipenv
+- ansible
 
   ```shell
+  sudo apt install ansible
   pip3 install pipenv
   ```
 
@@ -97,7 +99,21 @@ flask_best_practices
   pipenv --venv
   ```
 
-## 3. Configuration Files
+
+## 3. Generate and check Configuration Files
+
+- Pre-setup (check and modify var files)
+  
+**Ansible role `Application` vars**
+
+```shell
+/flask_best_practices/meta/playbooks/roles/application/vars/main.yaml
+```
+
+```shell
+ansible-playbook meta/playbooks/configure_project.yaml
+```
+
 
 - Pre-setup (e.g., creating databases)
 
